@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/bmf-san/akashigo"
 	"github.com/bmf-san/akashigo/client"
 	"github.com/bmf-san/akashigo/gettoken"
 	"github.com/bmf-san/akashigo/stamp"
@@ -30,7 +31,7 @@ func reqStamp(client *client.Client) {
 	}
 	s, err := model.Stamp(stamp.StampParams{
 		Token:    client.APIToken,
-		Type:     types.Attendance,
+		Type:     types.LeaveWork,
 		Timezone: "+09:00",
 	})
 	if err != nil {
@@ -43,8 +44,8 @@ func main() {
 	apiToken := os.Getenv("AKASHI_API_TOKEN")
 	companyID := os.Getenv("AKASHI_COMPANY_ID")
 
-	client := client.New(apiToken, companyID)
+	akashigo := akashigo.New(apiToken, companyID)
 
-	// reqGetToken(client)
-	reqStamp(client)
+	reqGetToken(akashigo)
+	reqStamp(akashigo)
 }
