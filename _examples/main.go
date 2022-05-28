@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/bmf-san/akashigo"
 	"github.com/bmf-san/akashigo/client"
 	"github.com/bmf-san/akashigo/gettoken"
 	"github.com/bmf-san/akashigo/stamp"
@@ -44,7 +43,7 @@ func main() {
 	apiToken := os.Getenv("AKASHI_API_TOKEN")
 	companyID := os.Getenv("AKASHI_COMPANY_ID")
 
-	akashigo := akashigo.New(apiToken, companyID)
+	akashigo := client.New(apiToken, companyID)
 
 	reqGetToken(akashigo)
 	reqStamp(akashigo)
